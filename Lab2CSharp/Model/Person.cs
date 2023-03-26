@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Lab2CSharp.Tools.Exception;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -81,6 +83,8 @@ namespace Lab2CSharp.Model
             }
             set
             {
+                Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+                if (!regex.IsMatch(value)) throw new InvalidEmailExeption(value);
                 _email = value;
             }
         }
@@ -92,6 +96,8 @@ namespace Lab2CSharp.Model
             }
             set
             {
+                if (DateTime.Today < value) throw new FutureBirthDateException(value);
+                else if (new DateTime(DateTime.Today.Subtract(value).Ticks).Year > 135) throw new OldBirthDateException(value);
                 _birthDate = value;
             }
         }

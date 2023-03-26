@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Lab2CSharp.Tools.Exception;
 
 namespace Lab2CSharp.ViewModel
 {
@@ -92,16 +93,33 @@ namespace Lab2CSharp.ViewModel
                     DateTime today = DateTime.Today;
                     int years = today.Year - BirthDate.Year;
 
-                    if (years < 0 || years > 135) MessageBox.Show("Illegal date!");
-                    if (Person.IsBirthday) MessageBox.Show("Happy Birthday!");
+                    if (years < 0 || years > 135)
+                    {
+                        MessageBox.Show("Illegal date!");
+                    }
+                    else
+                    {
+                        if (Person.IsBirthday) MessageBox.Show("Happy Birthday!");
 
-                    MessageBox.Show(
-                        $"Adult: {_person.IsAdult}\n" +
-                        $"WesternZodiac: {_person.WesternZodiac}\n" +
-                        $"ChineseZodiac: {_person.ChineseZodiac}"
-                                    );
-
+                        MessageBox.Show(
+                            $"Adult: {_person.IsAdult}\n" +
+                            $"WesternZodiac: {_person.WesternZodiac}\n" +
+                            $"ChineseZodiac: {_person.ChineseZodiac}"
+                                        );
+                    }
                 }
+                //catch (FutureBirthDateException exp)
+                //{
+                //    MessageBox.Show($"Error: {exp.Message} !\n Your input: {exp.Value}");
+                //}
+                //catch (OldBirthDateException exp)
+                //{
+                //    MessageBox.Show($"Error: {exp.Message} !\n Your input: {exp.Value}");
+                //}
+                //catch (InvalidEmailException exp)
+                //{
+                //    MessageBox.Show($"Error: {exp.Message} !\n Your input: {exp.Value}");
+                //}
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
