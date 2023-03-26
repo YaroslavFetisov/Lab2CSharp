@@ -19,7 +19,7 @@ namespace Lab2CSharp.ViewModel
         private string _name;
         private string _surname;
         private string _email;
-        private DateTime _birthDate;
+        private DateTime _birthDate = DateTime.Today;
 
         private RelayCommand<object> _proceedCommand;
 
@@ -77,6 +77,7 @@ namespace Lab2CSharp.ViewModel
             set
             {
                 _person = value;
+
             }
         }
 
@@ -120,13 +121,6 @@ namespace Lab2CSharp.ViewModel
             {
                 return _proceedCommand ??= (_proceedCommand = new RelayCommand<object>(ShowResult, o => CanExecuteCommand()));
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     } 
 }

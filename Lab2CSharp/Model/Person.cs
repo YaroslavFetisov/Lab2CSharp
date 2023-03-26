@@ -12,7 +12,7 @@ namespace Lab2CSharp.Model
         private string _name;
         private string _surname;
         private string _email;
-        private DateTime _birthDate = DateTime.Now;
+        private DateTime _birthDate;
 
         private readonly bool _isAdult;
         private readonly string _westernZodiac;
@@ -24,6 +24,7 @@ namespace Lab2CSharp.Model
             Name = name;
             Surname = surname;
             Email = email;
+            BirthDate = birthDate;
             
             _isBirthday = CheckBirthday();
             _isAdult = CheckAdult();
